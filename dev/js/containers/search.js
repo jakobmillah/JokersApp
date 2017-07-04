@@ -5,15 +5,19 @@ import {connect} from 'react-redux';
  * */
 
 class Search extends Component {
-    constructor(){
-        super();
-        this.input = '';
+    constructor(props){
+        super(props);
+        this.state = {
+            result: '',
+            input: ''
+        }
+
     }
     render() {
         return (
             <div>
                 <h3>Search for item:</h3>
-                <input id="search_field" type="text" onChange={e => this.updateSearch(e.value, this.props.items, this.props.clanUsers)}/>
+                <input id="search_field" type="text" onChange={e => this.updateSearch(e.target, this.props.items, this.props.clanUsers)}/>
                 <br></br>
                 <h3>Result</h3>
             </div>
@@ -21,16 +25,15 @@ class Search extends Component {
     }
 
     updateSearch(input, items, users){
+        console.log(input.value);
         this.input = input;
         var searchResult;
-        var sf = document.getElementById('search_field');
-
-        if(sf.value.length < 3){
+        if(input.value.length < 3){
             return;
         }
 
         var selectedItems = items.filter(function (item){
-            return item.id.includes(sf.value);
+            return item.id.includes(input.value);
         });
 
         if(selectedItems){
@@ -61,9 +64,9 @@ class Search extends Component {
                     });
                 }
             });
-            this.setState({result: searchResult !== -1});
+            this.setState({result: searchResult});
         }
-        console.log(searchResult);  
+        console.log(searchResult); 
     }  
 }
 
