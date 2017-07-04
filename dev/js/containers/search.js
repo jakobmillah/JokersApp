@@ -8,36 +8,34 @@ class Search extends Component {
     constructor(props){
         super(props);
         this.state = {
-            result: [],
-            input: ''
+            result: []
         }
     }
-    componentWillMount(){
+    componentWillReceiveProps(){
+        console.log("1");
     }
     render() {
         return (
             <div>
                 <h3>Search for item:</h3>
-                <input id="search_field" type="text" onChange={e => this.updateSearch(e.target, this.props.items, this.props.clanUsers)}/>
+                <input id="search_field" type="text" onChange={e => this.updateSearch(e.target.value, this.props.items, this.props.clanUsers)}/>
                 <br></br>
                 <h3>Result</h3>
                 {
-                    this.state.result.map(function(r) { <p key={r.key}>{ r.value }</p> })
+                    this.state.result.map(function(r) { return <p key={r.key}>{ r.key }</p> })
                 }
             </div>
         );
     }
 
     updateSearch(input, items, users){
-        console.log(input.value);
-        this.input = input;
         var searchResult;
-        if(input.value.length < 3){
+        if(input.length < 3){
             return;
         }
 
         var selectedItems = items.filter(function (item){
-            return item.id.includes(input.value);
+            return item.id.includes(input);
         });
 
         if(selectedItems){
@@ -48,8 +46,7 @@ class Search extends Component {
                     var temp = [];
 
                     temp = user.crafting.filter(function(c){
-                        return (c.type == sItem.type &&
-                        c.skill > sItem.skill);
+                        return (c.type == sItem.type && c.skill > sItem.skill);
                     });
                     if(temp.length){
                         sUsers.push(user);
@@ -69,9 +66,7 @@ class Search extends Component {
                 }
             });
             this.setState({result: searchResult});
-        }
-        console.log(this.state.result);
-        console.log(searchResult); 
+        }        
     }  
 }
 
