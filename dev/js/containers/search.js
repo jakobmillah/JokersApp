@@ -8,7 +8,7 @@ class Search extends Component {
     constructor(props){
         super(props);
         this.state = {
-            result: '',
+            result: [],
             input: ''
         }
 
@@ -20,6 +20,9 @@ class Search extends Component {
                 <input id="search_field" type="text" onChange={e => this.updateSearch(e.target, this.props.items, this.props.clanUsers)}/>
                 <br></br>
                 <h3>Result</h3>
+                {
+                    this.state.result.map(function(r) { <p key={r.key}>{ r.value }</p> })
+                }
             </div>
         );
     }
@@ -66,7 +69,7 @@ class Search extends Component {
             });
             this.setState({result: searchResult});
         }
-        console.log(searchResult); 
+        console.log(this.state.result); 
     }  
 }
 
