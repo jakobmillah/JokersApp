@@ -22,7 +22,10 @@ class Search extends Component {
                 <br></br>
                 <h3>Result</h3>
                 {
-                    this.state.result.map(function(r) { return <p key={r.key}>{ r.key }</p> })
+                    this.state.result.map(function(r) 
+                    { 
+                        return <p key={r.key}>{ console.log(r.value) }</p> 
+                    })
                 }
             </div>
         );
@@ -31,6 +34,7 @@ class Search extends Component {
     updateSearch(input, items, users){
         var searchResult;
         if(input.length < 3){
+            this.setState({result: []});
             return;
         }
 
@@ -43,16 +47,13 @@ class Search extends Component {
             selectedItems.forEach(function(sItem){
                 var sUsers = [];
                 users.forEach(function (user){
-                    var temp = [];
-
-                    temp = user.crafting.filter(function(c){
-                        return (c.type == sItem.type && c.skill > sItem.skill);
-                    });
-                    if(temp.length){
+                    if (user.crafting.find(function(c) {
+                        return (c.type == sItem.type && c.skill > sItem.skill);})) 
+                        {
                         sUsers.push(user);
-                    } 
+                    }
                 });
-                if(sUsers.length){
+                if(sUsers.length > 0){
                     searchResult.push({
                         key: sItem.id,
                         value: sUsers

@@ -55,6 +55,58 @@ export default function () {
                     skill: 54
                 }
             ]
+        },
+        {
+            id: 1,
+            first: "Pell",
+            last: "Helix",
+            race: "Alfar",
+            crafting: [
+                {
+                    type: "Alchemy",
+                    skill: 0
+                },
+                {
+                    type: "Enchanting",
+                    skill: 0
+                },
+                {
+                    type: "Engineering",
+                    skill: 45
+                },
+                {
+                    type: "Alchemy",
+                    skill: 0
+                },
+                {
+                    type: "Blacksmithing",
+                    skill: 52
+                },
+                {
+                    type: "Bowyer",
+                    skill: 100
+                },
+                {
+                    type: "Bowyer mastery",
+                    skill: 100
+                },
+                {
+                    type: "Weaponsmithing",
+                    skill: 1
+                },
+                {
+                    type: "Weaponsmithing mastery",
+                    skill: 0
+                },
+                {
+                    type: "Trueforge Armorsmithing",
+                    skill: 54
+                },
+                {
+                    type: "Trueforge Weaponsmithing",
+                    skill: 54
+                }
+            ]
         }
     ]
 }
