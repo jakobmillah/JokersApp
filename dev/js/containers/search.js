@@ -11,7 +11,8 @@ class Search extends Component {
             result: [],
             input: ''
         }
-
+    }
+    componentWillMount(){
     }
     render() {
         return (
@@ -69,7 +70,8 @@ class Search extends Component {
             });
             this.setState({result: searchResult});
         }
-        console.log(this.state.result); 
+        console.log(this.state.result);
+        console.log(searchResult); 
     }  
 }
 
