@@ -18,57 +18,44 @@ class Search extends Component {
         return (
             <div>
                 <h3>Search for item:</h3>
-                <input id="search_field" type="text" onChange={e => this.updateSearch(e.target.value, this.props.items, this.props.clanUsers)}/>
+                <input id="search_field" type="text" onChange={e => this.updateSearch(e.target.value)}/>
                 <br></br>
                 <h3>Result</h3>
+                <div>
                 {
-                    this.state.result.map(function(r) 
-                    { 
-                        return <p key={r.key}>{ console.log(r.value) }</p> 
-                    })
+                    this.state.result.map(r => { 
+                        return  <div key={r.item.id}> <h3>{r.item.id }</h3> 
+                                    { r.users.map(u => {
+                                        return <p key={u.id}>{u.first + ' ' + u.last}</p>}) }
+                                </div> })
                 }
+                </div>
             </div>
         );
     }
 
-    updateSearch(input, items, users){
-        var searchResult;
+    getItems(input){    
+        return this.props.items.filter(function (item){ return item.id.includes(input); });
+    }
+    getUsersForItem(item){
+        return this.props.clanUsers.filter(u => { return  u.crafting.filter(c => { return c.type == item.type && c.skill > item.skill}); });
+    }
+
+    updateSearch(input){
         if(input.length < 3){
             this.setState({result: []});
-            return;
+            return;            
         }
+        var items = this.getItems(input);
 
-        var selectedItems = items.filter(function (item){
-            return item.id.includes(input);
+        var results = items.map(i => { return {
+                item: i,
+                users: this.getUsersForItem(i)
+            }; 
         });
 
-        if(selectedItems){
-            searchResult = [];
-            selectedItems.forEach(function(sItem){
-                var sUsers = [];
-                users.forEach(function (user){
-                    if (user.crafting.find(function(c) {
-                        return (c.type == sItem.type && c.skill > sItem.skill);})) 
-                        {
-                        sUsers.push(user);
-                    }
-                });
-                if(sUsers.length > 0){
-                    searchResult.push({
-                        key: sItem.id,
-                        value: sUsers
-                    });
-                }
-                else{
-                    searchResult.push({
-                        key: sItem.id,
-                        value: "None"
-                    });
-                }
-            });
-            this.setState({result: searchResult});
-        }        
-    }  
+        this.setState({result: results});  
+    }
 }
 
 // "state.activeUser" is set in reducers/index.js
