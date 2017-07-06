@@ -1,6 +1,4 @@
 import {combineReducers} from 'redux';
-import UserReducer from './reducer-users';
-import ActiveUserReducer from './reducer-active-user';
 import ClanUsersReducer from './reducer-clan-users';
 import ItemsReducer from './reducer-items';
 
@@ -10,8 +8,6 @@ import ItemsReducer from './reducer-items';
  * */
 
 const allReducers = combineReducers({
-    users: UserReducer,
-    activeUser: ActiveUserReducer,
     clanUsers: ClanUsersReducer,
     items: ItemsReducer
 });
