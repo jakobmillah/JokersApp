@@ -19,6 +19,7 @@
     "expect": "^1.20.1",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^3.8.0",
+    "prop-types": "^15.5.10",
     "react": "^15.1.0",
     "react-addons-test-utils": "^15.1.0",
     "react-bootstrap": "^0.31.0",

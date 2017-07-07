@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../containers/login';
+import Login from '../components/Login';
 import Search from '../containers/search';
 
 import {
@@ -15,7 +15,7 @@ const Main = () => (
   <main>
     <Switch>
       <Route exact path='/login' component={Login}/>
-      <PrivateRoute path='/search' component={Search}/>
+      <Route path='/search' component={Search}/>
     </Switch>
   </main>
 )

@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import ClanUsersReducer from './reducer-clan-users';
 import ItemsReducer from './reducer-items';
+import auth  from './reducer-auth'
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -9,7 +10,8 @@ import ItemsReducer from './reducer-items';
 
 const allReducers = combineReducers({
     clanUsers: ClanUsersReducer,
-    items: ItemsReducer
+    items: ItemsReducer,
+    auth: auth
 });
 
 export default allReducers

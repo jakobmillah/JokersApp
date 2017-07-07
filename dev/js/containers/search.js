@@ -11,9 +11,11 @@ class Search extends Component {
             result: []
         }
     }
+
     componentWillReceiveProps(){
-        console.log("1");
+        console.log("componentWillReceiveProps");
     }
+
     render() {
         return (
             <div>
@@ -34,13 +36,17 @@ class Search extends Component {
         );
     }
 
+    //Gets a list of items that was select from input
     getItems(input){    
         return this.props.items.filter(function (item){ return item.id.toLowerCase().includes(input); });
     }
+
+    //Gets users based on selected items
     getUsersForItem(item){
         return this.props.clanUsers.filter(u => { return u.crafting.filter(c => { return c.type == item.type && c.skill > item.skill}); });
     }
 
+    //Update state
     updateSearch(input){
         if(input.length < 3){
             this.setState({result: []});
@@ -57,7 +63,7 @@ class Search extends Component {
 }
 
 
-// "state.activeUser" is set in reducers/index.js
+// "state.clanUsers" is set in reducers/index.js
 function mapStateToProps(state) {
     return {
         clanUsers: state.clanUsers,
