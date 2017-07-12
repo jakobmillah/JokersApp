@@ -30,11 +30,9 @@ class Login extends Component{
   }
 
   handleClick(event) {
-    debugger;
     const username = this.refs.username
     const password = this.refs.password
     const creds = { username: username.value.trim(), password: password.value.trim() }
-    console.log(this.props)
     this.props.onLoginClick(creds)
   }
 }
@@ -48,7 +46,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return{
-    onLoginClick: creds => {
+    onLoginClick: (creds) => {
       dispatch(loginUser(creds))
     }
   }
